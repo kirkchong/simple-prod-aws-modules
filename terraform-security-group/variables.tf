@@ -32,8 +32,8 @@ variable "tags" {
 
 # Ingress Rules, ingress_rules.tf
 variable "ip_ingress_rules" {
-  description = "Map of ipv4 ingress rules"
-  type = map(
+  description = "List of ipv4 ingress rules"
+  type = list(
     object({
       cidr_ipv4   = string,
       from_port   = number,

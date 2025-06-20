@@ -1,3 +1,4 @@
+# Security Group, main.tf
 variable "name" {
   description = "Name of the security group"
   type        = string
@@ -6,7 +7,7 @@ variable "name" {
 
 variable "vpc_id" {
   description = "Optional, VPC ID that the security group will be created in"
-  default     = null # TODO: verify this
+  default     = null # TODO: verify null or ""
   type        = string
 }
 
@@ -28,3 +29,18 @@ variable "tags" {
   default     = {}
 }
 
+
+# Ingress Rules, ingress_rules.tf
+variable "ip_ingress_rules" {
+  description = "Map of ipv4 ingress rules"
+  type = map(
+    object({
+      cidr_ipv4   = string,
+      from_port   = number,
+      to_port     = number,
+      ip_protocol = string,
+      description = optional(string)
+    })
+  )
+  default = {}
+}

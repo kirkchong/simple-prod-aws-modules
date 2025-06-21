@@ -19,7 +19,6 @@ variable "ipv4_ingress_allow_all" {
   type = list(
     object({
       cidr_ipv4   = string,
-      ip_protocol = string,
       description = optional(string)
     })
   )
@@ -45,7 +44,6 @@ variable "security_group_ingress_allow_all" {
   type = list(
     object({
       referenced_security_group_id = string,
-      ip_protocol                  = string,
       description                  = optional(string)
     })
   )

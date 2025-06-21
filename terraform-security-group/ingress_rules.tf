@@ -46,7 +46,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_all_ipv4" {
   security_group_id = aws_security_group.this.id
 
   cidr_ipv4   = each.value.cidr_ipv4
-  ip_protocol = each.value.ip_protocol
+  ip_protocol = "-1"
   description = lookup(each.value, "description", null)
 
   region = var.region
@@ -72,7 +72,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_all_security_group_id" {
   security_group_id = aws_security_group.this.id
 
   referenced_security_group_id = each.value.referenced_security_group_id
-  ip_protocol                  = each.value.ip_protocol
+  ip_protocol                  = "-1"
   description                  = lookup(each.value, "description", null)
 
   region = var.region

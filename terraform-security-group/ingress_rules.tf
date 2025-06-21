@@ -57,7 +57,7 @@ locals {
 }
 
 
-resource "aws_vpc_security_ingress_rule" "allow_ipv4" {
+resource "aws_vpc_security_group_ingress_rule" "allow_ipv4" {
   for_each          = local.ipv4_ingress_rules
   security_group_id = aws_security_group.this.id
 
@@ -71,7 +71,7 @@ resource "aws_vpc_security_ingress_rule" "allow_ipv4" {
   tags   = var.tags
 }
 
-resource "aws_vpc_security_ingress_rule" "allow_all_ipv4" {
+resource "aws_vpc_security_group_ingress_rule" "allow_all_ipv4" {
   for_each          = local.ipv4_ingress_allow_all
   security_group_id = aws_security_group.this.id
 
@@ -83,7 +83,7 @@ resource "aws_vpc_security_ingress_rule" "allow_all_ipv4" {
   tags   = var.tags
 }
 
-resource "aws_vpc_security_ingress_rule" "allow_security_group" {
+resource "aws_vpc_security_group_ingress_rule" "allow_security_group" {
   for_each          = local.security_group_ingress_rules
   security_group_id = aws_security_group.this.id
 
@@ -97,7 +97,7 @@ resource "aws_vpc_security_ingress_rule" "allow_security_group" {
   tags   = var.tags
 }
 
-resource "aws_vpc_security_ingress_rule" "allow_all_security_group_id" {
+resource "aws_vpc_security_group_ingress_rule" "allow_all_security_group_id" {
   for_each          = local.ipv4_ingress_allow_all
   security_group_id = aws_security_group.this.id
 

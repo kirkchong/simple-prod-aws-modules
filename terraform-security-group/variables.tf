@@ -1,6 +1,6 @@
 # Security Group, main.tf
-variable "name" {
-  description = "Name of the security group"
+variable "security_group_name" {
+  description = "Name of the security group to create"
   type        = string
   # Technically optional, but name your security groups meaningfully
 }
@@ -11,8 +11,8 @@ variable "vpc_id" {
   type        = string
 }
 
-variable "description" {
-  description = "Optional, Description of the security group"
+variable "security_group_description" {
+  description = "Optional, Description of the security group to create"
   type        = string
   default     = null
 }
@@ -24,7 +24,7 @@ variable "region" {
 }
 
 variable "tags" {
-  description = "Optional, map of tags assigned to the security group"
+  description = "Optional, map of tags assigned to the security group and rules"
   type        = map(any)
   default     = {}
 }

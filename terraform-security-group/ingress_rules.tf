@@ -1,33 +1,3 @@
-/* input
-# ipv4 ingress
-[
-{
-    cidr_ipv4:
-    from_port:
-    to_port:
-    ip_protocol: #required
-    description:
-}
-]
-
-# ingress allow all
-    # option 1
-    [
-        "0.0.0.0/0",
-        "1.1.1.1/32"
-    ]
-
-    # option 2, leaning towards this for consistency in format
-    [
-    {
-        cidr_ipv4: "0.0.0.0/0",
-        ip_protocol = -1 
-    }
-    ] 
-tags={}
-
-*/
-
 # Credit
 # https://stackoverflow.com/users/7950592/cloudkollektiv
 # https://stackoverflow.com/questions/58594506/how-to-for-each-through-a-listobjects-in-terraform-0-12

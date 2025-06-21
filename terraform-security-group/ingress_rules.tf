@@ -68,7 +68,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_security_group" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "allow_all_security_group_id" {
-  for_each          = local.ipv4_ingress_allow_all
+  for_each          = local.security_group_ingress_allow_all
   security_group_id = aws_security_group.this.id
 
   referenced_security_group_id = each.value.referenced_security_group_id

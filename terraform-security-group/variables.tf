@@ -31,7 +31,7 @@ variable "tags" {
 
 
 # Ingress Rules, ingress_rules.tf
-variable "ip_ingress_rules" {
+variable "ipv4_ingress_rules" {
   description = "List of ipv4 ingress rules"
   type = list(
     object({
@@ -43,4 +43,14 @@ variable "ip_ingress_rules" {
     })
   )
   default = {}
+}
+
+variable "ipv4_ingress_allow_all" {
+  description = "List of ipv4 address to allow all ports and protocol"
+  type = list(
+    object({
+      cidr_ipv4   = string,
+      ip_protocol = string
+    })
+  )
 }

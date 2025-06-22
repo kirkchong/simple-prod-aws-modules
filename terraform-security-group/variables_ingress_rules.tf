@@ -40,11 +40,25 @@ variable "security_group_ingress_rules" {
 }
 
 variable "security_group_ingress_allow_all" {
-  description = "List of security group id to allow all ports and protocol"
+  description = "List of security groups to allow all ports and protocol"
   type = list(
     object({
       referenced_security_group_id = string,
       description                  = optional(string)
+    })
+  )
+  default = []
+}
+
+variable "security_group_ingress_prefix_list" {
+  description = "List of prefix list ingress rules"
+  type = list(
+    object({
+      prefix_list_id = string,
+      from_port      = number,
+      to_port        = number,
+      ip_protocol    = string,
+      description    = optional(string)
     })
   )
   default = []

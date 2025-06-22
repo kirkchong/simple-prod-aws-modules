@@ -24,6 +24,12 @@ locals {
     for rule in var.security_group_ingress_allow_all :
     rule.referenced_security_group_id => rule
   }
+
+  security_group_ingress_prefix_list = {
+    for rule in var.security_group_ingress_prefix_list :
+    "${rule.prefix_list_id}-${rule.from_port}-${rule.to_port}-${rule.ip_protocol}"
+    => rule
+  }
 }
 
 
@@ -74,6 +80,20 @@ resource "aws_vpc_security_group_ingress_rule" "allow_all_security_group_id" {
   referenced_security_group_id = each.value.referenced_security_group_id
   ip_protocol                  = "-1"
   description                  = lookup(each.value, "description", null)
+
+  region = var.region
+  tags   = var.tags
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_prefix_list" {
+  for_each          = local.security_group_ingress_prefix_list
+  security_group_id = aws_security_group.this.id
+
+  prefix_list_id = each.value.prefix_list_id
+  from_port      = each.value.from_port
+  to_port        = each.value.to_port
+  ip_protocol    = each.value.ip_protocol
+  description    = lookup(each.value, "description", null)
 
   region = var.region
   tags   = var.tags
